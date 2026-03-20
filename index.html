@@ -23,12 +23,8 @@
     
     /* Animations */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     
     .animate-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
     .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
@@ -36,7 +32,7 @@
     /* Hero Section */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, rgba(13,92,75,0.95), rgba(26,143,117,0.9)), url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920') center/cover;
+      background: linear-gradient(135deg, rgba(13,92,75,0.9), rgba(26,143,117,0.85)), url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1920&q=80') center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -44,15 +40,6 @@
       text-align: center;
       color: white;
       position: relative;
-      overflow: hidden;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>') repeat;
-      animation: float 6s ease-in-out infinite;
     }
     
     .hero-content { position: relative; z-index: 1; padding: 20px; max-width: 900px; }
@@ -69,49 +56,24 @@
     }
     .hero h1 { 
       font-family: 'Playfair Display', serif; 
-      font-size: clamp(3rem, 8vw, 6rem); 
+      font-size: clamp(3rem, 8vw, 5.5rem); 
       font-weight: 700; 
       margin-bottom: 20px;
       text-shadow: 0 4px 30px rgba(0,0,0,0.3);
-      animation: fadeInUp 1s ease-out;
     }
-    .hero p { 
-      font-size: 1.3rem; 
-      opacity: 0.9; 
-      margin-bottom: 40px;
-      animation: fadeInUp 1s ease-out 0.2s both;
-    }
-    .hero-stats { 
-      display: flex; 
-      gap: 40px; 
-      justify-content: center; 
-      flex-wrap: wrap;
-      animation: fadeInUp 1s ease-out 0.4s both;
-    }
+    .hero p { font-size: 1.3rem; opacity: 0.9; margin-bottom: 40px; }
+    .hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
     .hero-stat { text-align: center; }
     .hero-stat-number { font-size: 2.5rem; font-weight: 700; }
     .hero-stat-label { font-size: 0.9rem; opacity: 0.8; }
     
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: float 2s ease-in-out infinite;
-    }
+    .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: float 2s ease-in-out infinite; }
     .scroll-indicator i { font-size: 2rem; opacity: 0.8; }
     
     /* Navigation */
     .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 15px 40px; display: flex; justify-content: space-between; align-items: center;
       transition: all 0.3s;
     }
     .nav.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
@@ -119,60 +81,36 @@
     .nav.scrolled .nav-logo { color: var(--primary); }
     .nav-links { display: flex; gap: 30px; }
     .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
-    .nav-links a:hover { opacity: 0.8; }
     .nav.scrolled .nav-links a { color: var(--dark); }
     
     /* Section Styles */
     .section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
     .section-header { text-align: center; margin-bottom: 60px; }
     .section-badge { 
-      display: inline-block;
-      background: linear-gradient(135deg, #e8f5f1, #d4ede4);
-      color: var(--primary);
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 15px;
+      display: inline-block; background: linear-gradient(135deg, #e8f5f1, #d4ede4);
+      color: var(--primary); padding: 8px 20px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;
     }
     .section-title { 
       font-family: 'Playfair Display', serif; 
-      font-size: clamp(2rem, 4vw, 3.5rem); 
-      color: var(--dark);
-      margin-bottom: 15px;
+      font-size: clamp(2rem, 4vw, 3rem); 
+      color: var(--dark); margin-bottom: 15px;
     }
     .section-subtitle { color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
     
     /* Filter Tabs */
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
-    }
+    .filter-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
     .filter-tab {
-      padding: 12px 28px;
-      border: 2px solid #ddd;
-      border-radius: 50px;
-      background: white;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.3s;
+      padding: 12px 28px; border: 2px solid #ddd; border-radius: 50px;
+      background: white; cursor: pointer; font-weight: 500; transition: all 0.3s;
     }
-    .filter-tab:hover, .filter-tab.active {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: white;
-    }
+    .filter-tab:hover, .filter-tab.active { border-color: var(--primary); background: var(--primary); color: white; }
     
     /* Villa Cards */
-    .villa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; }
+    .villa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
     
     .villa-card {
-      background: white;
-      border-radius: 24px;
-      overflow: hidden;
+      background: white; border-radius: 24px; overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -180,187 +118,93 @@
     .villa-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
     
     .villa-card.featured { border: 3px solid var(--accent); }
-    .villa-card.featured::before {
-      content: '⭐ TOP PICK';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: var(--gold-gradient);
-      color: var(--dark);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.75rem;
-      z-index: 10;
+    .villa-badge {
+      position: absolute; top: 20px; left: 20px; padding: 8px 16px;
+      border-radius: 20px; font-weight: 700; font-size: 0.75rem; z-index: 10;
     }
+    .villa-card.featured .villa-badge { background: var(--gold-gradient); color: var(--dark); }
+    .villa-card.budget .villa-badge { background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; }
+    .villa-card.hidden-gem .villa-badge { background: linear-gradient(135deg, #9c27b0, #e91e63); color: white; }
     
-    .villa-card.budget::before {
-      content: '💰 BEST VALUE';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: linear-gradient(135deg, #4CAF50, #8BC34A);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.75rem;
-      z-index: 10;
-    }
-    
-    .villa-card.hidden-gem::before {
-      content: '💎 HIDDEN GEM';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: linear-gradient(135deg, #9c27b0, #e91e63);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      font-size: 0.75rem;
-      z-index: 10;
-    }
-    
-    .villa-image-container { position: relative; height: 280px; overflow: hidden; }
+    .villa-image-container { position: relative; height: 260px; overflow: hidden; background: #e0e0e0; }
     .villa-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .villa-card:hover .villa-image { transform: scale(1.1); }
     
     .villa-location-badge {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      background: rgba(255,255,255,0.95);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      position: absolute; bottom: 15px; left: 15px;
+      background: rgba(255,255,255,0.95); padding: 8px 16px; border-radius: 20px;
+      font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;
     }
     
     .villa-content { padding: 25px; }
-    .villa-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
+    .villa-name { font-family: 'Playfair Display', serif; font-size: 1.35rem; margin-bottom: 10px; }
     .villa-specs { display: flex; gap: 15px; color: #666; font-size: 0.9rem; margin-bottom: 15px; }
     .villa-specs span { display: flex; align-items: center; gap: 5px; }
     
     .villa-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
     .villa-rating .stars { color: var(--accent); }
     .villa-rating .score { font-weight: 700; font-size: 1.1rem; }
-    .villa-rating .reviews { color: #666; font-size: 0.9rem; }
+    .villa-rating .reviews { color: #666; font-size: 0.85rem; }
     
     .villa-highlights { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .villa-highlight {
-      background: #f0f7f5;
-      color: var(--primary);
-      padding: 6px 12px;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
+    .villa-highlight { background: #f0f7f5; color: var(--primary); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500; }
     
     .villa-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #eee; }
-    .villa-price { font-size: 1.6rem; font-weight: 700; color: var(--primary); }
+    .villa-price { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
     .villa-price span { font-size: 0.9rem; font-weight: 400; color: #666; }
     
     .villa-cta {
-      background: var(--gradient);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      background: var(--gradient); color: white; padding: 12px 24px; border-radius: 25px;
+      text-decoration: none; font-weight: 600; transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
     }
     .villa-cta:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(13,92,75,0.3); }
     
     /* Comparison Table */
     .comparison-section { background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%); padding: 100px 40px; }
-    .comparison-table-wrapper { overflow-x: auto; }
+    .comparison-table-wrapper { overflow-x: auto; max-width: 1200px; margin: 0 auto; }
     .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      width: 100%; border-collapse: collapse; background: white;
+      border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     }
-    .comparison-table th {
-      background: var(--gradient);
-      color: white;
-      padding: 20px;
-      text-align: left;
-      font-weight: 600;
-    }
-    .comparison-table td { padding: 18px 20px; border-bottom: 1px solid #eee; }
+    .comparison-table th { background: var(--gradient); color: white; padding: 18px; text-align: left; font-weight: 600; }
+    .comparison-table td { padding: 16px 18px; border-bottom: 1px solid #eee; }
     .comparison-table tr:hover { background: #f8f9fa; }
     .comparison-table tr.highlight { background: linear-gradient(90deg, #fff9e6, #fff); }
-    .comparison-table .price { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
-    .comparison-table .rating { display: flex; align-items: center; gap: 5px; }
+    .comparison-table .price { font-weight: 700; color: var(--primary); font-size: 1.05rem; }
     .comparison-table .check { color: var(--primary-light); }
-    .comparison-table .cross { color: #ccc; }
     
     /* Area Guide */
-    .area-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .area-guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
     .area-card {
-      background: white;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-      transition: all 0.3s;
+      background: white; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: all 0.3s;
     }
     .area-card:hover { transform: translateY(-5px); }
-    .area-image { height: 200px; object-fit: cover; width: 100%; }
+    .area-image { height: 180px; object-fit: cover; width: 100%; }
     .area-content { padding: 25px; }
-    .area-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-    .area-vibe { color: #666; margin-bottom: 15px; }
+    .area-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
+    .area-vibe { color: #666; margin-bottom: 15px; font-size: 0.95rem; }
     .area-highlights { display: flex; flex-wrap: wrap; gap: 8px; }
     .area-highlight { background: #f0f7f5; color: var(--primary); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; }
     
     /* CTA Section */
     .cta-section {
-      background: var(--gradient);
-      padding: 100px 40px;
-      text-align: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: float 10s ease-in-out infinite;
+      background: var(--gradient); padding: 100px 40px; text-align: center;
+      color: white; position: relative; overflow: hidden;
     }
     .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .cta-title { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; }
+    .cta-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 20px; }
     .cta-text { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
     .cta-button {
-      display: inline-block;
-      background: white;
-      color: var(--primary);
-      padding: 18px 40px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.3s;
+      display: inline-block; background: white; color: var(--primary);
+      padding: 18px 40px; border-radius: 50px; text-decoration: none;
+      font-weight: 700; font-size: 1.1rem; transition: all 0.3s;
     }
     .cta-button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     
     /* Footer */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 60px 40px;
-      text-align: center;
-    }
+    footer { background: var(--dark); color: white; padding: 50px 40px; text-align: center; }
     footer p { opacity: 0.7; }
     
     /* Mobile Responsive */
@@ -368,12 +212,12 @@
       .nav { padding: 15px 20px; }
       .nav-links { display: none; }
       .section { padding: 60px 20px; }
-      .hero-stats { gap: 20px; }
       .villa-grid { grid-template-columns: 1fr; }
       .filter-tabs { gap: 10px; }
-      .filter-tab { padding: 10px 20px; font-size: 0.9rem; }
+      .filter-tab { padding: 10px 18px; font-size: 0.85rem; }
       .comparison-table { font-size: 0.85rem; }
-      .comparison-table th, .comparison-table td { padding: 12px; }
+      .comparison-table th, .comparison-table td { padding: 12px 10px; }
+      .cta-title { font-size: 2rem; }
     }
   </style>
 </head>
@@ -386,14 +230,13 @@
     <a href="#villas">Villas</a>
     <a href="#comparison">Compare</a>
     <a href="#areas">Areas</a>
-    <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
-    <span class="hero-badge">EXCLUSIVE COLLECTION</span>
+    <span class="hero-badge">✨ EXCLUSIVE COLLECTION</span>
     <h1>Bali 2026</h1>
     <p>Handpicked luxury villas for your dream working vacation<br>April - June • ~1 Month • You & Brittany</p>
     <div class="hero-stats">
@@ -419,25 +262,26 @@
 <!-- Villas Section -->
 <section class="section" id="villas">
   <div class="section-header animate-on-scroll">
-    <span class="section-badge">HANDPICKED SELECTION</span>
+    <span class="section-badge">🏡 HANDPICKED SELECTION</span>
     <h2 class="section-title">Exclusive Villa Collection</h2>
     <p class="section-subtitle">From hidden jungle retreats to beachfront luxury — all with private pools and fast WiFi</p>
   </div>
   
   <div class="filter-tabs animate-on-scroll">
     <button class="filter-tab active" data-filter="all">All Villas</button>
-    <button class="filter-tab" data-filter="budget">Budget Luxury ($700-1,500)</button>
+    <button class="filter-tab" data-filter="budget">💰 Budget ($700-1,500)</button>
     <button class="filter-tab" data-filter="mid">Mid-Range ($1,500-2,500)</button>
     <button class="filter-tab" data-filter="premium">Premium ($2,500+)</button>
-    <button class="filter-tab" data-filter="hidden">Hidden Gems</button>
+    <button class="filter-tab" data-filter="hidden">💎 Hidden Gems</button>
   </div>
   
   <div class="villa-grid">
     
     <!-- FEATURED: Villa Vinati -->
-    <div class="villa-card featured animate-on-scroll" data-category="mid">
+    <div class="villa-card featured animate-on-scroll" data-category="mid premium">
+      <span class="villa-badge">⭐ TOP PICK</span>
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1207728405270743433/original/41c0f0ac-b3f2-4e9d-9e11-e2a4e0d0e2e4.jpeg" class="villa-image" alt="Villa Vinati">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" class="villa-image" alt="Villa Vinati Canggu">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Canggu</span>
       </div>
       <div class="villa-content">
@@ -466,8 +310,9 @@
     
     <!-- BUDGET: Garden Villa Tegalalang -->
     <div class="villa-card budget animate-on-scroll" data-category="budget">
+      <span class="villa-badge">💰 BEST VALUE</span>
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-28013568/original/ef9a9a7c-0a3e-4e4b-b7d7-f4d2f8e1e3c8.jpeg" class="villa-image" alt="Garden Villa">
+        <img src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?w=800&q=80" class="villa-image" alt="Garden Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Tegalalang</span>
       </div>
       <div class="villa-content">
@@ -496,8 +341,9 @@
     
     <!-- HIDDEN GEM: Ocean View Glass Infinity Pool -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="mid hidden">
+      <span class="villa-badge">💎 HIDDEN GEM</span>
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/4f7d7e9c-0b1a-4c2d-9e3f-8a5b6c7d8e9f.jpeg" class="villa-image" alt="Ocean View Villa" onerror="this.src='https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800'">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" class="villa-image" alt="Ocean View Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> East Bali</span>
       </div>
       <div class="villa-content">
@@ -527,7 +373,7 @@
     <!-- Wooden House Rice Field -->
     <div class="villa-card animate-on-scroll" data-category="mid">
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-50775200/original/c9a4e2f7-e8d1-4b3c-9a5f-0d6e7f8a9b0c.jpeg" class="villa-image" alt="Wooden House" onerror="this.src='https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=800'">
+        <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=800&q=80" class="villa-image" alt="Wooden House">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Tegallalang</span>
       </div>
       <div class="villa-content">
@@ -540,7 +386,7 @@
         <div class="villa-rating">
           <span class="stars">★★★★★</span>
           <span class="score">4.98</span>
-          <span class="reviews">(183 reviews) - TOP GUEST FAVORITE</span>
+          <span class="reviews">(183) TOP FAVORITE</span>
         </div>
         <div class="villa-highlights">
           <span class="villa-highlight">🏡 Unique Wooden Hut</span>
@@ -557,7 +403,7 @@
     <!-- Sayan Stana Ubud -->
     <div class="villa-card animate-on-scroll" data-category="mid">
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1169485455633157249/original/0eaac3ce-c8d2-45bc-b6b1-fb355b3f94de.jpeg" class="villa-image" alt="Sayan Stana">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80" class="villa-image" alt="Sayan Stana">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Ubud (Sayan)</span>
       </div>
       <div class="villa-content">
@@ -570,7 +416,7 @@
         <div class="villa-rating">
           <span class="stars">★★★★★</span>
           <span class="score">5.0</span>
-          <span class="reviews">(35 reviews) - PERFECT RATING</span>
+          <span class="reviews">(35) PERFECT RATING</span>
         </div>
         <div class="villa-highlights">
           <span class="villa-highlight">🛁 Hot Tub</span>
@@ -586,8 +432,9 @@
     
     <!-- Boutique Villa Ubud Budget -->
     <div class="villa-card budget animate-on-scroll" data-category="budget">
+      <span class="villa-badge">💰 BEST VALUE</span>
       <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" class="villa-image" alt="Boutique Villa">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" class="villa-image" alt="Boutique Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Ubud</span>
       </div>
       <div class="villa-content">
@@ -617,7 +464,7 @@
     <!-- Seminyak Beach Villa -->
     <div class="villa-card animate-on-scroll" data-category="premium">
       <div class="villa-image-container">
-        <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1308646910622134877/original/f1e7b982-5b3f-4a50-9e6f-8c92847e18ea.jpeg" class="villa-image" alt="Seminyak Villa" onerror="this.src='https://images.unsplash.com/photo-1615571022219-eb45cf7faa36?w=800'">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" class="villa-image" alt="Seminyak Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Seminyak</span>
       </div>
       <div class="villa-content">
@@ -646,8 +493,9 @@
     
     <!-- Sidemen Hidden Gem -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="budget hidden">
+      <span class="villa-badge">💎 HIDDEN GEM</span>
       <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800" class="villa-image" alt="Sidemen Villa">
+        <img src="https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&q=80" class="villa-image" alt="Sidemen Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Sidemen</span>
       </div>
       <div class="villa-content">
@@ -676,8 +524,9 @@
     
     <!-- Artist Villa 4BR -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="mid hidden">
+      <span class="villa-badge">💎 HIDDEN GEM</span>
       <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800" class="villa-image" alt="Artist Villa">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" class="villa-image" alt="Artist Villa">
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Gianyar</span>
       </div>
       <div class="villa-content">
@@ -695,7 +544,7 @@
         <div class="villa-highlights">
           <span class="villa-highlight">🎨 Artistic Design</span>
           <span class="villa-highlight">🏔️ Hill Views</span>
-          <span class="villa-highlight">👨‍👩‍👧‍👦 Perfect for Groups</span>
+          <span class="villa-highlight">👨‍👩‍👧‍👦 Great for Groups</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,743 <span>/month</span></div>
@@ -710,12 +559,12 @@
 <!-- Comparison Section -->
 <section class="comparison-section" id="comparison">
   <div class="section-header animate-on-scroll">
-    <span class="section-badge">SIDE BY SIDE</span>
+    <span class="section-badge">📊 SIDE BY SIDE</span>
     <h2 class="section-title">Quick Comparison</h2>
     <p class="section-subtitle">All the key details at a glance</p>
   </div>
   
-  <div class="comparison-table-wrapper animate-on-scroll" style="max-width: 1200px; margin: 0 auto;">
+  <div class="comparison-table-wrapper animate-on-scroll">
     <table class="comparison-table">
       <tr>
         <th>Villa</th>
@@ -723,78 +572,69 @@
         <th>Rating</th>
         <th>Monthly</th>
         <th>WiFi</th>
-        <th>Pool</th>
         <th>Best For</th>
       </tr>
       <tr class="highlight">
         <td><strong>⭐ Villa Vinati</strong></td>
         <td>Canggu</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.91 (23)</td>
+        <td><span style="color:#f0a500">★</span> 4.91 (23)</td>
         <td class="price">$3,200</td>
         <td><i class="fas fa-check check"></i> 100Mbps</td>
-        <td><i class="fas fa-check check"></i></td>
         <td>Remote Work</td>
       </tr>
       <tr>
         <td><strong>💰 Garden Villa</strong></td>
         <td>Tegalalang</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.69 (61)</td>
+        <td><span style="color:#f0a500">★</span> 4.69 (61)</td>
         <td class="price">$723</td>
-        <td><i class="fas fa-check check"></i></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Budget Luxury</td>
       </tr>
       <tr>
         <td><strong>💎 Ocean Glass Pool</strong></td>
         <td>East Bali</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.88 (134)</td>
+        <td><span style="color:#f0a500">★</span> 4.88 (134)</td>
         <td class="price">$1,875</td>
         <td><i class="fas fa-check check"></i></td>
-        <td><i class="fas fa-check check"></i> Glass!</td>
         <td>Wow Factor</td>
       </tr>
       <tr>
         <td><strong>Wooden House</strong></td>
         <td>Tegallalang</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.98 (183)</td>
+        <td><span style="color:#f0a500">★</span> 4.98 (183)</td>
         <td class="price">$1,949</td>
-        <td><i class="fas fa-check check"></i></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Unique Stay</td>
       </tr>
       <tr>
         <td><strong>Sayan Stana</strong></td>
         <td>Ubud</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 5.0 (35)</td>
+        <td><span style="color:#f0a500">★</span> 5.0 (35)</td>
         <td class="price">$1,954</td>
         <td><i class="fas fa-check check"></i></td>
-        <td><i class="fas fa-check check"></i> + Hot Tub</td>
         <td>Perfect Score</td>
       </tr>
       <tr>
         <td><strong>💰 Boutique Ubud</strong></td>
         <td>Ubud</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 5.0 (9)</td>
+        <td><span style="color:#f0a500">★</span> 5.0 (9)</td>
         <td class="price">$1,156</td>
-        <td><i class="fas fa-check check"></i></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Budget + Quality</td>
       </tr>
       <tr>
         <td><strong>Abian Seminyak</strong></td>
         <td>Seminyak</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.89 (19)</td>
+        <td><span style="color:#f0a500">★</span> 4.89 (19)</td>
         <td class="price">$3,500</td>
-        <td><i class="fas fa-check check"></i></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Beach + Nightlife</td>
       </tr>
       <tr>
         <td><strong>💎 Sidemen Loft</strong></td>
         <td>Sidemen</td>
-        <td class="rating"><span style="color:#f0a500">★</span> 4.73 (368)</td>
+        <td><span style="color:#f0a500">★</span> 4.73 (368)</td>
         <td class="price">$1,506</td>
-        <td><i class="fas fa-check check"></i></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Hidden Paradise</td>
       </tr>
@@ -805,14 +645,14 @@
 <!-- Area Guide -->
 <section class="section" id="areas">
   <div class="section-header animate-on-scroll">
-    <span class="section-badge">LOCATION GUIDE</span>
+    <span class="section-badge">🗺️ LOCATION GUIDE</span>
     <h2 class="section-title">Explore Bali's Best Areas</h2>
     <p class="section-subtitle">From tourist hotspots to secret hideaways</p>
   </div>
   
   <div class="area-guide">
     <div class="area-card animate-on-scroll">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800" class="area-image" alt="Canggu">
+      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80" class="area-image" alt="Canggu">
       <div class="area-content">
         <h3 class="area-name">🏄 Canggu</h3>
         <p class="area-vibe">Digital nomad hub • Surf beaches • Trendy cafes</p>
@@ -825,7 +665,7 @@
     </div>
     
     <div class="area-card animate-on-scroll">
-      <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800" class="area-image" alt="Ubud">
+      <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80" class="area-image" alt="Ubud">
       <div class="area-content">
         <h3 class="area-name">🌿 Ubud</h3>
         <p class="area-vibe">Cultural heart • Rice terraces • Yoga & wellness</p>
@@ -838,7 +678,7 @@
     </div>
     
     <div class="area-card animate-on-scroll">
-      <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?w=800" class="area-image" alt="Sidemen">
+      <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?w=800&q=80" class="area-image" alt="Sidemen">
       <div class="area-content">
         <h3 class="area-name">🏔️ Sidemen (Hidden)</h3>
         <p class="area-vibe">Mt. Agung views • Zero tourists • Authentic Bali</p>
@@ -851,7 +691,7 @@
     </div>
     
     <div class="area-card animate-on-scroll">
-      <img src="https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=800" class="area-image" alt="Seminyak">
+      <img src="https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=800&q=80" class="area-image" alt="Seminyak">
       <div class="area-content">
         <h3 class="area-name">🍸 Seminyak</h3>
         <p class="area-vibe">Upscale beach • Shopping • Fine dining</p>
@@ -866,43 +706,35 @@
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section" id="contact">
+<section class="cta-section">
   <div class="cta-content">
     <h2 class="cta-title">Ready to Book?</h2>
     <p class="cta-text">These villas are in high demand for April-June. Don't miss out on your dream Bali experience!</p>
-    <a href="https://www.airbnb.com/rooms/1207728405270743433" class="cta-button">Book Top Pick: Villa Vinati →</a>
+    <a href="https://www.airbnb.com/rooms/1207728405270743433" class="cta-button" target="_blank">Book Top Pick: Villa Vinati →</a>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
   <p>Created with 🌴 by Lamarbot | March 2026</p>
-  <p style="margin-top: 10px; font-size: 0.9rem;">All prices are estimates. Verify with hosts for exact rates.</p>
+  <p style="margin-top: 10px; font-size: 0.9rem;">All prices are estimates. Click villa links for exact rates.</p>
 </footer>
 
 <script>
 // Scroll animation
 const animateOnScroll = () => {
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  elements.forEach(el => {
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add('visible');
-    }
+    if (rect.top < window.innerHeight - 100) el.classList.add('visible');
   });
 };
-
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
 // Nav scroll effect
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
-  if (window.scrollY > 100) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
+  nav.classList.toggle('scrolled', window.scrollY > 100);
 });
 
 // Filter tabs
@@ -910,14 +742,9 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    
     const filter = tab.dataset.filter;
     document.querySelectorAll('.villa-card').forEach(card => {
-      if (filter === 'all' || card.dataset.category.includes(filter)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (filter === 'all' || card.dataset.category.includes(filter)) ? 'block' : 'none';
     });
   });
 });
