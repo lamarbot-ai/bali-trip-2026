@@ -6,6 +6,7 @@
   <title>Bali 2026 - Exclusive Villa Collection</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
       --primary: #0d5c4b;
@@ -242,6 +243,7 @@
   <a href="#" class="nav-logo">🌴 Bali 2026</a>
   <div class="nav-links">
     <a href="#villas">Villas</a>
+    <a href="#map">Map</a>
     <a href="#comparison">Compare</a>
     <a href="#areas">Areas</a>
   </div>
@@ -574,6 +576,38 @@
   </div>
 </section>
 
+<!-- Map Section -->
+<section class="section" id="map">
+  <div class="section-header animate-on-scroll">
+    <span class="section-badge">🗺️ LOCATIONS</span>
+    <h2 class="section-title">Where Are These Villas?</h2>
+    <p class="section-subtitle">Click markers to see villa details • Zoom and pan to explore</p>
+  </div>
+  
+  <div class="map-container animate-on-scroll" style="border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+    <div id="map" style="height: 500px; width: 100%;"></div>
+  </div>
+  
+  <div class="map-legend animate-on-scroll" style="display: flex; justify-content: center; gap: 30px; margin-top: 25px; flex-wrap: wrap;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 20px; height: 20px; background: #f0a500; border-radius: 50%; display: inline-block;"></span>
+      <span>⭐ Top Pick</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 20px; height: 20px; background: #4CAF50; border-radius: 50%; display: inline-block;"></span>
+      <span>💰 Budget Luxury</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 20px; height: 20px; background: #9c27b0; border-radius: 50%; display: inline-block;"></span>
+      <span>💎 Hidden Gem</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="width: 20px; height: 20px; background: #2196F3; border-radius: 50%; display: inline-block;"></span>
+      <span>Other Villas</span>
+    </div>
+  </div>
+</section>
+
 <!-- Comparison Section -->
 <section class="comparison-section" id="comparison">
   <div class="section-header animate-on-scroll">
@@ -756,7 +790,183 @@
   <p style="margin-top: 10px; font-size: 0.9rem;">All prices are estimates. Click villa links for exact rates.</p>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+// Initialize Map
+const map = L.map('map').setView([-8.4095, 115.1889], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Villa locations with details
+const villas = [
+  {
+    name: "⭐ Villa Vinati Canggu",
+    lat: -8.6478,
+    lng: 115.1385,
+    price: "$3,200/mo",
+    rating: "4.91",
+    color: "#f0a500",
+    url: "https://www.airbnb.com/rooms/1207728405270743433",
+    features: "🏊 Private Pool • 📶 100Mbps • 💻 Workspace"
+  },
+  {
+    name: "💰 Garden & Pool Villa",
+    lat: -8.4195,
+    lng: 115.2789,
+    price: "$723/mo",
+    rating: "4.69",
+    color: "#4CAF50",
+    url: "https://www.airbnb.com/rooms/28013568",
+    features: "🏊 Private Pool • 🌴 Garden View"
+  },
+  {
+    name: "💎 Ocean-View Glass Infinity Pool",
+    lat: -8.4512,
+    lng: 115.5234,
+    price: "$1,875/mo",
+    rating: "4.88",
+    color: "#9c27b0",
+    url: "https://www.airbnb.com/rooms/25447889",
+    features: "🏊 Infinity Pool • 🌊 Ocean View • 🏖️ Near Beach"
+  },
+  {
+    name: "Wooden House w/ Pool",
+    lat: -8.4156,
+    lng: 115.2856,
+    price: "$1,949/mo",
+    rating: "4.98",
+    color: "#2196F3",
+    url: "https://www.airbnb.com/rooms/50775200",
+    features: "🏊 Private Pool • 🌾 Rice Field View"
+  },
+  {
+    name: "Sayan Stana Villa",
+    lat: -8.5012,
+    lng: 115.2456,
+    price: "$1,954/mo",
+    rating: "5.0",
+    color: "#2196F3",
+    url: "https://www.airbnb.com/rooms/1169485455633157249",
+    features: "🏊 Private Pool • 🛁 Hot Tub • 💻 Workspace"
+  },
+  {
+    name: "💰 Boutique Villa Ubud",
+    lat: -8.5189,
+    lng: 115.2623,
+    price: "$1,156/mo",
+    rating: "5.0",
+    color: "#4CAF50",
+    url: "https://www.airbnb.com/rooms/1475627744186011682",
+    features: "🏊 Private Pool • 🌴 Patio"
+  },
+  {
+    name: "The Abian Villa Seminyak",
+    lat: -8.6912,
+    lng: 115.1634,
+    price: "$3,500/mo",
+    rating: "4.89",
+    color: "#2196F3",
+    url: "https://www.airbnb.com/rooms/1308646910622134877",
+    features: "🏊 Private Pool • 🏖️ Walk to Beach!"
+  },
+  {
+    name: "💎 Loft Style - Sidemen",
+    lat: -8.4678,
+    lng: 115.4912,
+    price: "$1,506/mo",
+    rating: "4.73",
+    color: "#9c27b0",
+    url: "https://www.airbnb.com/rooms/24896847",
+    features: "🏊 Private Pool • 🏔️ Mt. Agung View"
+  },
+  {
+    name: "💎 Artist Villa 4BR",
+    lat: -8.4823,
+    lng: 115.3123,
+    price: "$1,743/mo",
+    rating: "5.0",
+    color: "#9c27b0",
+    url: "https://www.airbnb.com/rooms/33780483",
+    features: "🏊 Private Pool • 🏔️ Hill Views • 💻 Workspace"
+  }
+];
+
+// Add markers
+villas.forEach(villa => {
+  const icon = L.divIcon({
+    className: 'custom-marker',
+    html: `<div style="
+      background: ${villa.color};
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    ">🏠</div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  
+  const marker = L.marker([villa.lat, villa.lng], { icon }).addTo(map);
+  
+  marker.bindPopup(`
+    <div style="min-width: 220px; font-family: 'Inter', sans-serif;">
+      <h3 style="margin: 0 0 8px 0; font-size: 14px; color: #1a1a2e;">${villa.name}</h3>
+      <p style="margin: 0 0 5px 0; font-size: 13px;">
+        <strong style="color: #0d5c4b; font-size: 16px;">${villa.price}</strong>
+        <span style="color: #f0a500; margin-left: 8px;">★ ${villa.rating}</span>
+      </p>
+      <p style="margin: 0 0 10px 0; font-size: 11px; color: #666;">${villa.features}</p>
+      <a href="${villa.url}" target="_blank" style="
+        display: inline-block;
+        background: linear-gradient(135deg, #0d5c4b, #1a8f75);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 15px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 600;
+      ">View Villa →</a>
+    </div>
+  `);
+});
+
+// Add area labels
+const areas = [
+  { name: "CANGGU", lat: -8.65, lng: 115.13 },
+  { name: "SEMINYAK", lat: -8.69, lng: 115.17 },
+  { name: "UBUD", lat: -8.51, lng: 115.26 },
+  { name: "SIDEMEN", lat: -8.47, lng: 115.49 },
+  { name: "EAST BALI", lat: -8.45, lng: 115.55 }
+];
+
+areas.forEach(area => {
+  L.marker([area.lat, area.lng], {
+    icon: L.divIcon({
+      className: 'area-label',
+      html: `<div style="
+        background: rgba(26,26,46,0.8);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+      ">${area.name}</div>`,
+      iconSize: [80, 20],
+      iconAnchor: [40, 10]
+    })
+  }).addTo(map);
+});
+
 // Scroll animation
 const animateOnScroll = () => {
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
