@@ -53,7 +53,33 @@
     .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 60px 40px; text-align: center; border-radius: 24px; margin-top: 40px; }
     .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
     .cta-button { display: inline-block; background: white; color: var(--primary); padding: 18px 50px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; margin-top: 20px; }
-    @media (max-width: 768px) { .hero { height: 50vh; padding: 30px; } .hero h1 { font-size: 2rem; } .hero-meta { flex-direction: column; gap: 10px; } .content { padding: 40px 20px; } }
+    
+    /* Photo Gallery */
+    .photo-gallery { margin-bottom: 60px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .gallery-grid img:first-child { grid-column: span 2; grid-row: span 2; height: 515px; }
+    
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2rem; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .lightbox-nav.prev { left: 20px; }
+    .lightbox-nav.next { right: 20px; }
+    .lightbox-counter { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: white; font-size: 1rem; }
+    
+    @media (max-width: 768px) { 
+      .hero { height: 50vh; padding: 30px; } 
+      .hero h1 { font-size: 2rem; } 
+      .hero-meta { flex-direction: column; gap: 10px; } 
+      .content { padding: 40px 20px; } 
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid img { height: 150px; }
+      .gallery-grid img:first-child { height: 310px; }
+    }
   </style>
 </head>
 <body>
@@ -73,7 +99,30 @@
 </section>
 
 <div class="content">
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <h2 class="section-title">📸 Villa Photos</h2>
+    <div class="gallery-grid">
+      <img src="images/villa-garden/02-pool.jpg" alt="Private pool in garden setting" onclick="openLightbox(0)">
+      <img src="images/villa-garden/01-exterior.jpg" alt="Villa exterior" onclick="openLightbox(1)">
+      <img src="images/villa-garden/03-view.jpg" alt="Rice terrace views" onclick="openLightbox(2)">
+      <img src="images/villa-garden/04-bedroom.jpg" alt="Bedroom" onclick="openLightbox(3)">
+      <img src="images/villa-garden/05-living.jpg" alt="Living area" onclick="openLightbox(4)">
+      <img src="images/villa-garden/06-terrace.jpg" alt="Terrace" onclick="openLightbox(5)">
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav prev" onclick="changeLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav next" onclick="changeLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">6</span></div>
+  </div>
   
+  <!-- Overview -->
   <section class="section">
     <h2 class="section-title">🏡 Villa Overview</h2>
     <p style="font-size: 1.15rem; margin-bottom: 25px;">
@@ -84,6 +133,7 @@
     </p>
   </section>
   
+  <!-- Key Amenities -->
   <section class="section">
     <h2 class="section-title">✨ Key Amenities</h2>
     <div class="amenities-grid">
@@ -97,10 +147,11 @@
   </section>
   
   <div class="highlight-box">
-    <h3>🌾 What Makes This Location Unforgettable</h3>
+    <h3>🌾 What Makes This Location Special</h3>
     <p>This isn't just accommodation—it's an immersion into authentic Bali. Wake to the sounds of roosters and gamelan music from village ceremonies. Walk through rice paddies to get breakfast. Chat with local farmers. Visit the famous Tegalalang Rice Terraces (5 min drive) anytime. At this price, you can stay longer and truly experience island life.</p>
   </div>
   
+  <!-- Sample Week Itinerary -->
   <section class="section">
     <h2 class="section-title">📅 Sample Week Itinerary</h2>
     <div class="itinerary">
@@ -148,11 +199,12 @@
     </div>
   </section>
   
+  <!-- Top Restaurants Nearby -->
   <section class="section">
-    <h2 class="section-title">🍽️ Where to Eat (Budget-Friendly!)</h2>
+    <h2 class="section-title">🍽️ Top Restaurants Nearby</h2>
     <div class="restaurant-grid">
       <div class="restaurant-card">
-        <div class="restaurant-img" style="background-image: url('images/villa-garden/01-exterior.jpg')"></div>
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600')"></div>
         <div class="restaurant-content">
           <h4>Local Warungs</h4>
           <div class="restaurant-cuisine">Indonesian • Authentic</div>
@@ -161,7 +213,7 @@
         </div>
       </div>
       <div class="restaurant-card">
-        <div class="restaurant-img" style="background-image: url('images/villa-garden/01-exterior.jpg')"></div>
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600')"></div>
         <div class="restaurant-content">
           <h4>Ubud Cafes</h4>
           <div class="restaurant-cuisine">International • Healthy</div>
@@ -170,7 +222,7 @@
         </div>
       </div>
       <div class="restaurant-card">
-        <div class="restaurant-img" style="background-image: url('images/villa-garden/01-exterior.jpg')"></div>
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600')"></div>
         <div class="restaurant-content">
           <h4>Cook at Home</h4>
           <div class="restaurant-cuisine">Self-Catering</div>
@@ -181,8 +233,52 @@
     </div>
   </section>
   
+  <!-- Activities & Experiences -->
   <section class="section">
-    <h2 class="section-title">💰 Monthly Budget Breakdown (ULTRA-BUDGET!)</h2>
+    <h2 class="section-title">🎯 Activities & Experiences</h2>
+    <div class="restaurant-grid">
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Tegalalang Rice Terraces</h4>
+          <div class="restaurant-cuisine">Nature • UNESCO</div>
+          <p>World-famous terraced rice paddies, stunning photo opportunities.</p>
+          <div class="restaurant-price"><span class="price">~$3 entry</span><a href="https://www.google.com/maps/place/Tegallalang+Rice+Terrace/@-8.4341,115.2792,17z" target="_blank">5 min →</a></div>
+        </div>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Bali Swing</h4>
+          <div class="restaurant-cuisine">Adventure • Photos</div>
+          <p>Iconic jungle swings with incredible valley views. Instagram famous!</p>
+          <div class="restaurant-price"><span class="price">~$35 entry</span><a href="https://baliswing.com/" target="_blank">10 min →</a></div>
+        </div>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Tirta Empul Temple</h4>
+          <div class="restaurant-cuisine">Culture • Spiritual</div>
+          <p>Sacred water temple for purification rituals. Profound experience.</p>
+          <div class="restaurant-price"><span class="price">~$5 entry</span><a href="https://www.google.com/maps/place/Tirta+Empul+Temple/@-8.4154,115.3155,17z" target="_blank">15 min →</a></div>
+        </div>
+      </div>
+      <div class="restaurant-card">
+        <div class="restaurant-img" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600')"></div>
+        <div class="restaurant-content">
+          <h4>Cooking Classes</h4>
+          <div class="restaurant-cuisine">Culture • Food</div>
+          <p>Learn to cook authentic Balinese dishes from local families.</p>
+          <div class="restaurant-price"><span class="price">$20-35/class</span><a href="#">Various →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Monthly Budget Breakdown -->
+  <section class="section">
+    <h2 class="section-title">💰 Monthly Budget Breakdown</h2>
     <table class="budget-table">
       <tr><th>Category</th><th>Estimated Cost</th><th>Notes</th></tr>
       <tr><td><strong>🏠 Garden Villa (1 month)</strong></td><td class="price">$723</td><td>Incredible value!</td></tr>
@@ -195,6 +291,31 @@
     <p style="margin-top: 20px; color: #666;">💡 This is TRUE budget travel with luxury (private pool!) - you could live here for 2+ months for the price of 1 month elsewhere!</p>
   </section>
   
+  <!-- Nearby Exclusive Experiences -->
+  <section class="section" style="background: linear-gradient(135deg, #1a1a2e, #2d1f3d); padding: 50px; border-radius: 25px; margin-bottom: 40px;">
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+      <span style="font-size: 1.5rem;">🔮</span> Exclusive Experiences Near Tegalalang
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🌅 Sunrise Trekking</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Mount Batur sunrise trek. Depart 2AM, incredible views.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🎨 Art Villages</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Visit traditional woodcarving and painting villages.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 20px;">
+        <h4 style="color: white; margin-bottom: 8px;">🍃 Coffee Plantations</h4>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Try Luwak coffee at local plantations. Free tastings!</p>
+      </div>
+    </div>
+    <a href="exclusive.html" style="display: inline-block; margin-top: 25px; color: #f0a500; text-decoration: none; font-weight: 600;">
+      View All Exclusive Experiences →
+    </a>
+  </section>
+  
+  <!-- CTA -->
   <section class="cta-section">
     <h2>Best Value in Bali!</h2>
     <p style="font-size: 1.2rem; opacity: 0.9;">$723/month for a private pool villa. This won't last!</p>
@@ -202,5 +323,53 @@
   </section>
   
 </div>
+
+<script>
+// Lightbox functionality
+const galleryImages = [
+  'images/villa-garden/02-pool.jpg',
+  'images/villa-garden/01-exterior.jpg',
+  'images/villa-garden/03-view.jpg',
+  'images/villa-garden/04-bedroom.jpg',
+  'images/villa-garden/05-living.jpg',
+  'images/villa-garden/06-terrace.jpg'
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById('lightbox').classList.add('active');
+  document.getElementById('lightbox-img').src = galleryImages[index];
+  document.getElementById('lightbox-current').textContent = index + 1;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function changeLightbox(direction) {
+  currentIndex += direction;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+  document.getElementById('lightbox-current').textContent = currentIndex + 1;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeLightbox(-1);
+  if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+// Click outside to close
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+</script>
+
 </body>
 </html>
