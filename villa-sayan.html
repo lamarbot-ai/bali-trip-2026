@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayan Stana Villa | Bali 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --primary: #0d5c4b; --primary-light: #1a8f75; --accent: #f0a500; --dark: #1a1a2e; --light: #f8f9fa; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.7; }
+    
+    .hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(13,92,75,0.85), rgba(26,143,117,0.8)), 
+        url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1920&q=80') center/cover;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: white; padding: 60px 20px;
+    }
+    .hero-badge { background: linear-gradient(135deg, #FFD700, #FFA500); color: #1a1a2e; padding: 10px 25px; border-radius: 30px; font-weight: 700; margin-bottom: 25px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px; max-width: 800px; }
+    .hero-meta { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; font-size: 1.1rem; }
+    .hero-meta span { display: flex; align-items: center; gap: 8px; }
+    
+    .back-link { position: fixed; top: 20px; left: 20px; background: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; color: var(--dark); font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; gap: 8px; }
+    
+    .content { max-width: 1000px; margin: 0 auto; padding: 60px 40px; }
+    .section { margin-bottom: 60px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+    
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .overview-item { background: white; padding: 25px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .overview-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+    .overview-item h4 { font-size: 1.3rem; margin-bottom: 5px; }
+    .overview-item p { color: #666; }
+    
+    .highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; padding: 30px; border-radius: 20px; margin: 30px 0; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px; }
+    
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+    .amenity { background: white; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.06); }
+    .amenity i { color: var(--primary); font-size: 1.3rem; }
+    
+    .itinerary { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .day { padding: 20px 0; border-bottom: 1px solid #eee; }
+    .day:last-child { border-bottom: none; }
+    .day-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .day-badge { background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .day h4 { font-size: 1.2rem; }
+    .day-activities { display: grid; gap: 10px; padding-left: 20px; }
+    .activity { display: flex; align-items: center; gap: 10px; }
+    .activity-time { background: #f0f7f5; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+    
+    .restaurants-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .restaurant { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .restaurant h4 { font-size: 1.2rem; margin-bottom: 8px; }
+    .restaurant-meta { display: flex; gap: 15px; color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+    .restaurant p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+    .restaurant a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    
+    .budget-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+    .budget-table th, .budget-table td { padding: 18px 20px; text-align: left; }
+    .budget-table th { background: var(--primary); color: white; font-weight: 600; }
+    .budget-table tr:nth-child(even) { background: #f8f9fa; }
+    .budget-table tr:last-child { font-weight: 700; background: #e8f5f1; }
+    
+    .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 50px; border-radius: 25px; text-align: center; color: white; margin-top: 40px; }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: white; color: var(--primary); padding: 18px 40px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.3s; }
+    .cta-btn:hover { transform: scale(1.05); }
+    
+    @media (max-width: 768px) { .content { padding: 40px 20px; } .hero-meta { flex-direction: column; gap: 15px; } }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> All Villas</a>
+
+<section class="hero">
+  <span class="hero-badge">⭐ PERFECT 5.0 RATING</span>
+  <h1>Sayan Stana Villa</h1>
+  <div class="hero-meta">
+    <span><i class="fas fa-map-marker-alt"></i> Sayan, Ubud</span>
+    <span><i class="fas fa-star"></i> 5.0 (35 reviews)</span>
+    <span><i class="fas fa-dollar-sign"></i> $1,954/month</span>
+  </div>
+</section>
+
+<div class="content">
+  
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-home"></i> Villa Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-item"><i class="fas fa-bed"></i><h4>2 Bedrooms</h4><p>King beds, AC</p></div>
+      <div class="overview-item"><i class="fas fa-bath"></i><h4>2.5 Bathrooms</h4><p>Luxury finishes</p></div>
+      <div class="overview-item"><i class="fas fa-users"></i><h4>4 Guests</h4><p>Perfect for duo</p></div>
+      <div class="overview-item"><i class="fas fa-swimming-pool"></i><h4>Private Pool</h4><p>Jungle views</p></div>
+      <div class="overview-item"><i class="fas fa-hot-tub"></i><h4>Hot Tub</h4><p>Jacuzzi included</p></div>
+      <div class="overview-item"><i class="fas fa-laptop"></i><h4>Workspace</h4><p>Dedicated desk</p></div>
+    </div>
+    
+    <div class="highlight-box">
+      <h3>✨ Why This Villa Has a Perfect 5.0</h3>
+      <p>Sayan is where Four Seasons Bali is located — this is the premium Ubud neighborhood. The villa combines luxury amenities with authentic jungle atmosphere. Private pool + hot tub + dedicated workspace makes it ideal for longer stays. 35 guests gave it a perfect score — that's rare!</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-concierge-bell"></i> Amenities</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><i class="fas fa-swimming-pool"></i> Private Pool</div>
+      <div class="amenity"><i class="fas fa-hot-tub"></i> Hot Tub/Jacuzzi</div>
+      <div class="amenity"><i class="fas fa-laptop"></i> Dedicated Workspace</div>
+      <div class="amenity"><i class="fas fa-wifi"></i> Fast WiFi</div>
+      <div class="amenity"><i class="fas fa-snowflake"></i> Air Conditioning</div>
+      <div class="amenity"><i class="fas fa-utensils"></i> Full Kitchen</div>
+      <div class="amenity"><i class="fas fa-tree"></i> Jungle Views</div>
+      <div class="amenity"><i class="fas fa-parking"></i> Free Parking</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calendar-week"></i> Sample Week Itinerary</h2>
+    <div class="itinerary">
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 1</span><h4>Arrival in Paradise</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">3pm</span> Check-in, villa orientation</div>
+          <div class="activity"><span class="activity-time">5pm</span> Pool and hot tub session</div>
+          <div class="activity"><span class="activity-time">7pm</span> Dinner at Swept Away (Four Seasons)</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 2</span><h4>Sayan Valley Exploration</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Morning yoga by the pool</div>
+          <div class="activity"><span class="activity-time">10am</span> Campuhan Ridge Walk</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch at The Sayan House</div>
+          <div class="activity"><span class="activity-time">6pm</span> Sunset hot tub session</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 3</span><h4>Ubud Culture Deep Dive</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">9am</span> Ubud Palace & Art Market</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch at Hujan Locale</div>
+          <div class="activity"><span class="activity-time">3pm</span> ARMA Museum</div>
+          <div class="activity"><span class="activity-time">7pm</span> Traditional dance performance</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 4</span><h4>Remote Work Day</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">8am</span> Work from dedicated workspace</div>
+          <div class="activity"><span class="activity-time">12pm</span> Lunch break at pool</div>
+          <div class="activity"><span class="activity-time">6pm</span> Evening work with jungle sounds</div>
+          <div class="activity"><span class="activity-time">8pm</span> In-villa dinner (chef available)</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 5</span><h4>Waterfall Adventure</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">7am</span> Tibumana Waterfall (less crowded)</div>
+          <div class="activity"><span class="activity-time">10am</span> Kanto Lampo Waterfall</div>
+          <div class="activity"><span class="activity-time">1pm</span> Lunch in Gianyar</div>
+          <div class="activity"><span class="activity-time">5pm</span> Hot tub recovery</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 6</span><h4>Wellness Day</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">9am</span> Spa treatment at Four Seasons</div>
+          <div class="activity"><span class="activity-time">1pm</span> Healthy lunch at Alchemy</div>
+          <div class="activity"><span class="activity-time">4pm</span> Sound healing session</div>
+          <div class="activity"><span class="activity-time">7pm</span> Dinner at Locavore</div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-header"><span class="day-badge">DAY 7</span><h4>Sacred Sites</h4></div>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">6am</span> Tirta Empul purification ceremony</div>
+          <div class="activity"><span class="activity-time">10am</span> Gunung Kawi ancient temple</div>
+          <div class="activity"><span class="activity-time">2pm</span> Final pool afternoon</div>
+          <div class="activity"><span class="activity-time">7pm</span> Farewell dinner at Apéritif</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-utensils"></i> Restaurants Nearby</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>The Sayan House</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$$</span><span><i class="fas fa-car"></i> 5 min</span></div>
+        <p>Stunning infinity pool restaurant overlooking Ayung River. Perfect brunch spot with Instagram-worthy views. Book ahead!</p>
+        <a href="https://www.thesayanhouse.com/" target="_blank">Visit Website →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Swept Away (Four Seasons)</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$$$</span><span><i class="fas fa-car"></i> 5 min</span></div>
+        <p>Romantic riverside dining at Four Seasons. Indonesian and international cuisine. Request a table by the river.</p>
+        <a href="https://www.fourseasons.com/sayan/dining/restaurants/swept_away/" target="_blank">Visit Website →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Hujan Locale</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$$</span><span><i class="fas fa-car"></i> 15 min</span></div>
+        <p>Modern Indonesian by Will Meyrick (MasterChef). Heritage recipes with contemporary twist. Try the tasting menu.</p>
+        <a href="https://hujanlocale.com/" target="_blank">Visit Website →</a>
+      </div>
+      <div class="restaurant">
+        <h4>Alchemy</h4>
+        <div class="restaurant-meta"><span><i class="fas fa-dollar-sign"></i> $$</span><span><i class="fas fa-car"></i> 15 min</span></div>
+        <p>Ubud's best raw vegan restaurant. Make-your-own salad bar, cold-pressed juices, wellness vibes. Great for detox.</p>
+        <a href="https://www.alchemybali.com/" target="_blank">Visit Website →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-hiking"></i> Activities & Experiences</h2>
+    <div class="restaurants-grid">
+      <div class="restaurant">
+        <h4>Campuhan Ridge Walk</h4>
+        <p>Iconic ridge walk between two valleys. Best at sunrise for golden light and cooler temps. 2km easy walk.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Four Seasons Spa</h4>
+        <p>World-class spa just 5 minutes away. Balinese massages, river-view treatment rooms. Book as a day guest.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Tirta Empul Temple</h4>
+        <p>Sacred spring water temple. Participate in traditional purification ritual. Bring sarong and sash.</p>
+      </div>
+      <div class="restaurant">
+        <h4>Ayung River Rafting</h4>
+        <p>2-hour white water adventure through jungle gorge. Suitable for beginners. Pickup from Sayan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><i class="fas fa-calculator"></i> Monthly Budget Breakdown</h2>
+    <table class="budget-table">
+      <tr><th>Expense</th><th>Estimated Cost</th></tr>
+      <tr><td>Villa (30 nights)</td><td>$1,954</td></tr>
+      <tr><td>Food & Dining</td><td>$800 - $1,200</td></tr>
+      <tr><td>Scooter Rental</td><td>$120</td></tr>
+      <tr><td>Activities & Tours</td><td>$300 - $500</td></tr>
+      <tr><td>Spa & Wellness</td><td>$200 - $400</td></tr>
+      <tr><td>Misc & Transport</td><td>$100</td></tr>
+      <tr><td><strong>TOTAL (per person, shared)</strong></td><td><strong>$1,737 - $2,137</strong></td></tr>
+    </table>
+  </section>
+
+  <div class="cta-section">
+    <h2>⭐ Experience Perfect 5.0 Luxury</h2>
+    <p style="margin-bottom: 25px; opacity: 0.9;">Pool + hot tub + workspace in Ubud's most prestigious neighborhood.</p>
+    <a href="https://www.airbnb.com/rooms/1169485455633157249" target="_blank" class="cta-btn">Book on Airbnb →</a>
+  </div>
+  
+</div>
+
+</body>
+</html>
