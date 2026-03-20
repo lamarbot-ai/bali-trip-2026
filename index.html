@@ -131,6 +131,18 @@
     .villa-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .villa-card:hover .villa-image { transform: scale(1.1); }
     
+    /* Image Carousel */
+    .villa-carousel { display: flex; transition: transform 0.3s ease; height: 100%; }
+    .villa-carousel img { min-width: 100%; height: 100%; object-fit: cover; }
+    .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; z-index: 5; }
+    .villa-card:hover .carousel-nav { opacity: 1; }
+    .carousel-nav.prev { left: 10px; }
+    .carousel-nav.next { right: 10px; }
+    .carousel-nav:hover { background: white; }
+    .carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s; }
+    .carousel-dot.active { background: white; transform: scale(1.2); }
+    
     .villa-location-badge {
       position: absolute; bottom: 15px; left: 15px;
       background: rgba(255,255,255,0.95); padding: 8px 16px; border-radius: 20px;
@@ -297,8 +309,21 @@
     <!-- FEATURED: Villa Vinati -->
     <div class="villa-card featured animate-on-scroll" data-category="mid premium">
       <span class="villa-badge">⭐ TOP PICK</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" class="villa-image" alt="Villa Vinati Canggu">
+      <div class="villa-image-container" data-carousel="vinati">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Villa Vinati - Exterior">
+          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80" alt="Villa Vinati - Pool">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80" alt="Villa Vinati - Living">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Villa Vinati - Bedroom">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('vinati', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('vinati', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('vinati', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('vinati', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('vinati', 2)"></span>
+          <span class="carousel-dot" onclick="goToSlide('vinati', 3)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Canggu</span>
       </div>
       <div class="villa-content">
@@ -329,8 +354,19 @@
     <!-- BUDGET: Garden Villa Tegalalang -->
     <div class="villa-card budget animate-on-scroll" data-category="budget">
       <span class="villa-badge">💰 BEST VALUE</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?w=800&q=80" class="villa-image" alt="Garden Villa">
+      <div class="villa-image-container" data-carousel="garden">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?w=800&q=80" alt="Garden Villa - Pool">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Garden Villa - Garden">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80" alt="Garden Villa - Interior">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('garden', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('garden', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('garden', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('garden', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('garden', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Tegalalang</span>
       </div>
       <div class="villa-content">
@@ -360,8 +396,19 @@
     <!-- HIDDEN GEM: Ocean View Glass Infinity Pool -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="mid hidden">
       <span class="villa-badge">💎 HIDDEN GEM</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" class="villa-image" alt="Ocean View Villa">
+      <div class="villa-image-container" data-carousel="ocean">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Ocean Villa - View">
+          <img src="https://images.unsplash.com/photo-1615571022219-eb45cf7faa9d?w=800&q=80" alt="Ocean Villa - Infinity Pool">
+          <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=800&q=80" alt="Ocean Villa - Interior">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('ocean', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('ocean', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('ocean', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('ocean', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('ocean', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> East Bali</span>
       </div>
       <div class="villa-content">
@@ -390,8 +437,19 @@
     
     <!-- Wooden House Rice Field -->
     <div class="villa-card animate-on-scroll" data-category="mid">
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=800&q=80" class="villa-image" alt="Wooden House">
+      <div class="villa-image-container" data-carousel="wooden">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=800&q=80" alt="Wooden House - Exterior">
+          <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=800&q=80" alt="Wooden House - Pool">
+          <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80" alt="Wooden House - Rice View">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('wooden', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('wooden', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('wooden', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('wooden', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('wooden', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Tegallalang</span>
       </div>
       <div class="villa-content">
@@ -420,8 +478,19 @@
     
     <!-- Sayan Stana Ubud -->
     <div class="villa-card animate-on-scroll" data-category="mid">
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80" class="villa-image" alt="Sayan Stana">
+      <div class="villa-image-container" data-carousel="sayan">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80" alt="Sayan Stana - Exterior">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" alt="Sayan Stana - Pool">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Sayan Stana - Jungle">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('sayan', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('sayan', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('sayan', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('sayan', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('sayan', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Ubud (Sayan)</span>
       </div>
       <div class="villa-content">
@@ -452,8 +521,19 @@
     <!-- Boutique Villa Ubud Budget -->
     <div class="villa-card budget animate-on-scroll" data-category="budget">
       <span class="villa-badge">💰 BEST VALUE</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" class="villa-image" alt="Boutique Villa">
+      <div class="villa-image-container" data-carousel="boutique">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Boutique Villa - Exterior">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Boutique Villa - Pool">
+          <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&q=80" alt="Boutique Villa - Patio">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('boutique', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('boutique', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('boutique', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('boutique', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('boutique', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Ubud</span>
       </div>
       <div class="villa-content">
@@ -482,8 +562,19 @@
     
     <!-- Seminyak Beach Villa -->
     <div class="villa-card animate-on-scroll" data-category="premium">
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" class="villa-image" alt="Seminyak Villa">
+      <div class="villa-image-container" data-carousel="abian">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Abian Villa - Exterior">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" alt="Abian Villa - Pool">
+          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80" alt="Abian Villa - Beach">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('abian', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('abian', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('abian', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('abian', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('abian', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Seminyak</span>
       </div>
       <div class="villa-content">
@@ -514,8 +605,19 @@
     <!-- Sidemen Hidden Gem -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="budget hidden">
       <span class="villa-badge">💎 HIDDEN GEM</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&q=80" class="villa-image" alt="Sidemen Villa">
+      <div class="villa-image-container" data-carousel="sidemen">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&q=80" alt="Sidemen - Mt Agung View">
+          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80" alt="Sidemen - Pool">
+          <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80" alt="Sidemen - Rice Terraces">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('sidemen', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('sidemen', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('sidemen', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('sidemen', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('sidemen', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Sidemen</span>
       </div>
       <div class="villa-content">
@@ -545,8 +647,19 @@
     <!-- Artist Villa 4BR -->
     <div class="villa-card hidden-gem animate-on-scroll" data-category="mid hidden">
       <span class="villa-badge">💎 HIDDEN GEM</span>
-      <div class="villa-image-container">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" class="villa-image" alt="Artist Villa">
+      <div class="villa-image-container" data-carousel="bamboo">
+        <div class="villa-carousel">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Bamboo House - Exterior">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" alt="Bamboo House - Pool">
+          <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=800&q=80" alt="Bamboo House - Interior">
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel('bamboo', -1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav next" onclick="moveCarousel('bamboo', 1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active" onclick="goToSlide('bamboo', 0)"></span>
+          <span class="carousel-dot" onclick="goToSlide('bamboo', 1)"></span>
+          <span class="carousel-dot" onclick="goToSlide('bamboo', 2)"></span>
+        </div>
         <span class="villa-location-badge"><i class="fas fa-map-marker-alt"></i> Gianyar</span>
       </div>
       <div class="villa-content">
@@ -1027,6 +1140,54 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
       card.style.display = (filter === 'all' || card.dataset.category.includes(filter)) ? 'block' : 'none';
     });
   });
+});
+
+// Image Carousel
+const carouselState = {};
+
+function moveCarousel(id, direction) {
+  const container = document.querySelector(`[data-carousel="${id}"]`);
+  const carousel = container.querySelector('.villa-carousel');
+  const images = carousel.querySelectorAll('img');
+  const dots = container.querySelectorAll('.carousel-dot');
+  
+  if (!carouselState[id]) carouselState[id] = 0;
+  
+  carouselState[id] += direction;
+  if (carouselState[id] < 0) carouselState[id] = images.length - 1;
+  if (carouselState[id] >= images.length) carouselState[id] = 0;
+  
+  carousel.style.transform = `translateX(-${carouselState[id] * 100}%)`;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === carouselState[id]));
+}
+
+function goToSlide(id, index) {
+  const container = document.querySelector(`[data-carousel="${id}"]`);
+  const carousel = container.querySelector('.villa-carousel');
+  const dots = container.querySelectorAll('.carousel-dot');
+  
+  carouselState[id] = index;
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+
+// Touch swipe support
+document.querySelectorAll('.villa-image-container').forEach(container => {
+  let startX = 0;
+  let endX = 0;
+  const id = container.dataset.carousel;
+  
+  container.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  container.addEventListener('touchend', e => {
+    endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      moveCarousel(id, diff > 0 ? 1 : -1);
+    }
+  }, { passive: true });
 });
 </script>
 
