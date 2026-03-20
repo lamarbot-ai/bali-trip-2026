@@ -149,6 +149,20 @@
     .villa-highlights { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
     .villa-highlight { background: #f0f7f5; color: var(--primary); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500; }
     
+    /* Amenity Tags */
+    .amenity-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .amenity-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    }
+    .amenity-tag.pool { background: linear-gradient(135deg, #00bcd4, #0097a7); color: white; }
+    .amenity-tag.beach { background: linear-gradient(135deg, #ff9800, #f57c00); color: white; }
+    .amenity-tag.wifi { background: linear-gradient(135deg, #9c27b0, #7b1fa2); color: white; }
+    .amenity-tag.workspace { background: linear-gradient(135deg, #607d8b, #455a64); color: white; }
+    .amenity-tag.view { background: linear-gradient(135deg, #4caf50, #388e3c); color: white; }
+    .amenity-tag.kitchen { background: linear-gradient(135deg, #795548, #5d4037); color: white; }
+    .amenity-tag.hottub { background: linear-gradient(135deg, #e91e63, #c2185b); color: white; }
+    
     .villa-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #eee; }
     .villa-price { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
     .villa-price span { font-size: 0.9rem; font-weight: 400; color: #666; }
@@ -296,10 +310,11 @@
           <span class="score">4.91</span>
           <span class="reviews">(23 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🚀 100Mbps WiFi</span>
-          <span class="villa-highlight">💻 Workspace</span>
-          <span class="villa-highlight">🌾 Rice Paddy View</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag wifi">📶 100Mbps</span>
+          <span class="amenity-tag workspace">💻 Workspace</span>
+          <span class="amenity-tag view">🌾 Rice View</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$3,200 <span>/month</span></div>
@@ -327,10 +342,10 @@
           <span class="score">4.69</span>
           <span class="reviews">(61 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🏊 Private Pool</span>
-          <span class="villa-highlight">🌴 Traditional Village</span>
-          <span class="villa-highlight">🏆 Superhost</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag view">🌴 Garden View</span>
+          <span class="amenity-tag kitchen">🍳 Kitchen</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$723 <span>/month</span></div>
@@ -358,10 +373,10 @@
           <span class="score">4.88</span>
           <span class="reviews">(134 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🌊 Ocean Views</span>
-          <span class="villa-highlight">♾️ Glass Infinity Pool</span>
-          <span class="villa-highlight">🏆 Superhost</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Infinity Pool</span>
+          <span class="amenity-tag view">🌊 Ocean View</span>
+          <span class="amenity-tag beach">🏖️ Near Beach</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,875 <span>/month</span></div>
@@ -388,10 +403,10 @@
           <span class="score">4.98</span>
           <span class="reviews">(183) TOP FAVORITE</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🏡 Unique Wooden Hut</span>
-          <span class="villa-highlight">🌾 Rice Field</span>
-          <span class="villa-highlight">📸 Instagram Worthy</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag view">🌾 Rice Field View</span>
+          <span class="amenity-tag kitchen">🍳 Kitchen</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,949 <span>/month</span></div>
@@ -418,10 +433,11 @@
           <span class="score">5.0</span>
           <span class="reviews">(35) PERFECT RATING</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🛁 Hot Tub</span>
-          <span class="villa-highlight">🌿 Garden View</span>
-          <span class="villa-highlight">💻 Workspace</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag hottub">🛁 Hot Tub</span>
+          <span class="amenity-tag workspace">💻 Workspace</span>
+          <span class="amenity-tag view">🌿 Garden View</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,954 <span>/month</span></div>
@@ -449,10 +465,10 @@
           <span class="score">5.0</span>
           <span class="reviews">(9 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🏊 Pool + Patio</span>
-          <span class="villa-highlight">🌴 Quiet Location</span>
-          <span class="villa-highlight">💰 Great Value</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag view">🌴 Patio</span>
+          <span class="amenity-tag kitchen">🍳 Kitchen</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,156 <span>/month</span></div>
@@ -479,10 +495,11 @@
           <span class="score">4.89</span>
           <span class="reviews">(19 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🏖️ Walk to Beach</span>
-          <span class="villa-highlight">🛁 2 Bathtubs</span>
-          <span class="villa-highlight">☕ Near Starbucks Reserve</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag beach">🏖️ Walk to Beach</span>
+          <span class="amenity-tag workspace">💻 Workspace</span>
+          <span class="amenity-tag hottub">🛁 2 Bathtubs</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$3,500 <span>/month</span></div>
@@ -510,10 +527,10 @@
           <span class="score">4.73</span>
           <span class="reviews">(368 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🏔️ Mt. Agung View</span>
-          <span class="villa-highlight">🌿 Zero Tourists</span>
-          <span class="villa-highlight">💰 Incredible Value</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag view">🏔️ Mt. Agung View</span>
+          <span class="amenity-tag kitchen">🍳 Kitchen</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,506 <span>/month</span></div>
@@ -541,10 +558,11 @@
           <span class="score">5.0</span>
           <span class="reviews">(26 reviews)</span>
         </div>
-        <div class="villa-highlights">
-          <span class="villa-highlight">🎨 Artistic Design</span>
-          <span class="villa-highlight">🏔️ Hill Views</span>
-          <span class="villa-highlight">👨‍👩‍👧‍👦 Great for Groups</span>
+        <div class="amenity-tags">
+          <span class="amenity-tag pool">🏊 Private Pool</span>
+          <span class="amenity-tag view">🏔️ Hill Views</span>
+          <span class="amenity-tag kitchen">🍳 Kitchen</span>
+          <span class="amenity-tag workspace">💻 Workspace</span>
         </div>
         <div class="villa-footer">
           <div class="villa-price">$1,743 <span>/month</span></div>
@@ -571,7 +589,9 @@
         <th>Location</th>
         <th>Rating</th>
         <th>Monthly</th>
-        <th>WiFi</th>
+        <th>🏊 Pool</th>
+        <th>🏖️ Beach</th>
+        <th>📶 WiFi</th>
         <th>Best For</th>
       </tr>
       <tr class="highlight">
@@ -579,6 +599,8 @@
         <td>Canggu</td>
         <td><span style="color:#f0a500">★</span> 4.91 (23)</td>
         <td class="price">$3,200</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td>10 min</td>
         <td><i class="fas fa-check check"></i> 100Mbps</td>
         <td>Remote Work</td>
       </tr>
@@ -587,6 +609,8 @@
         <td>Tegalalang</td>
         <td><span style="color:#f0a500">★</span> 4.69 (61)</td>
         <td class="price">$723</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td>—</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Budget Luxury</td>
       </tr>
@@ -595,6 +619,8 @@
         <td>East Bali</td>
         <td><span style="color:#f0a500">★</span> 4.88 (134)</td>
         <td class="price">$1,875</td>
+        <td><i class="fas fa-check check"></i> Glass Infinity!</td>
+        <td>Near</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Wow Factor</td>
       </tr>
@@ -603,6 +629,8 @@
         <td>Tegallalang</td>
         <td><span style="color:#f0a500">★</span> 4.98 (183)</td>
         <td class="price">$1,949</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td>—</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Unique Stay</td>
       </tr>
@@ -611,6 +639,8 @@
         <td>Ubud</td>
         <td><span style="color:#f0a500">★</span> 5.0 (35)</td>
         <td class="price">$1,954</td>
+        <td><i class="fas fa-check check"></i> + Hot Tub</td>
+        <td>—</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Perfect Score</td>
       </tr>
@@ -619,6 +649,8 @@
         <td>Ubud</td>
         <td><span style="color:#f0a500">★</span> 5.0 (9)</td>
         <td class="price">$1,156</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td>—</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Budget + Quality</td>
       </tr>
@@ -627,6 +659,8 @@
         <td>Seminyak</td>
         <td><span style="color:#f0a500">★</span> 4.89 (19)</td>
         <td class="price">$3,500</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td><strong>Walk!</strong></td>
         <td><i class="fas fa-check check"></i></td>
         <td>Beach + Nightlife</td>
       </tr>
@@ -635,6 +669,8 @@
         <td>Sidemen</td>
         <td><span style="color:#f0a500">★</span> 4.73 (368)</td>
         <td class="price">$1,506</td>
+        <td><i class="fas fa-check check"></i> Private</td>
+        <td>—</td>
         <td><i class="fas fa-check check"></i></td>
         <td>Hidden Paradise</td>
       </tr>
